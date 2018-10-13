@@ -8,5 +8,7 @@ public class BhogateDotComApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BhogateDotComApplication.class, args);
+
     }
+
 }
