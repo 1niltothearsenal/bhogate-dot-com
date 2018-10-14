@@ -11,7 +11,7 @@ public interface VideoDao {
 
     void createVideo(Video video);
 
-    Video getVideo(UUID videoId);
+    Video getVideoById(UUID videoId);
 
     void updateVideo(Video video);
 

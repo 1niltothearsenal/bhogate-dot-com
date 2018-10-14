@@ -1,6 +1,8 @@
 package com.gooner.dhaka.bhogatedotcom.service;
 
 import com.gooner.dhaka.bhogatedotcom.model.Video;
+import org.springframework.hateoas.Resource;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -11,7 +13,7 @@ public interface VideoService {
 
     void updateVideo(Video video);
 
-    Video getVideo(UUID id);
+    Resource<Video> getVideoById(UUID id);
 
     List<Video> getAllVideos();
 

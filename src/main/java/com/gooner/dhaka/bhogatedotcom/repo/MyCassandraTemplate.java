@@ -28,15 +28,15 @@ public class MyCassandraTemplate {
         }
 
         public <T> List<T> findAll(Class<T> claz) {
-            return (List<T>) cassandraTemplate.select("SELECT * FROM videos;",claz);
+            return cassandraTemplate.select("SELECT * FROM videos;",claz);
         }
 
         public <T> T findById(Object id, Class<T> claz) {
         return cassandraTemplate.selectOneById(id,claz);
         }
 
-        public <T> void deleteVideo(Video video){
-            cassandraTemplate.delete(video);
+        public <T> void deleteVideo(T claz){
+            cassandraTemplate.delete(claz);
         }
 
 }

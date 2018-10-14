@@ -1,13 +1,23 @@
 package com.gooner.dhaka.bhogatedotcom.service;
 
+import com.gooner.dhaka.bhogatedotcom.controller.VideoController;
 import com.gooner.dhaka.bhogatedotcom.dao.VideoDao;
+import com.gooner.dhaka.bhogatedotcom.exception.UserNotFoundException;
 import com.gooner.dhaka.bhogatedotcom.model.Video;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
+
+@Slf4j
 @Service
 public class VideoServiceImpl implements VideoService {
 
@@ -28,8 +38,20 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Video getVideo(UUID id) {
-        return videoDao.getVideo(id);
+    public Resource<Video> getVideoById(UUID id) {
+
+        Video video = videoDao.getVideoById(id);
+
+        log.info(video.toString());
+
+        if(video == null) {
+            throw new UserNotFoundException("Invalid User Id!!!" + id);
+        }
+
+        Resource<Video> resource = new Resource<Video>(video);
+        ControllerLinkBuilder linkTo = linkTo(methodOn(VideoController.class).findAllVideos());
+        resource.add(linkTo.withRel("all-videos"));
+        return resource;
     }
 
     @Override

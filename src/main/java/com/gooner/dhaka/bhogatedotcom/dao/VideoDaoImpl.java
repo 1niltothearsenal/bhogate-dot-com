@@ -5,7 +5,6 @@ import com.gooner.dhaka.bhogatedotcom.repo.MyCassandraTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +25,7 @@ public class VideoDaoImpl implements VideoDao {
     }
 
     @Override
-    public Video getVideo(UUID videoId) {
+    public Video getVideoById(UUID videoId) {
         return myCassandraTemplate.findById(videoId,Video.class);
     }
 
