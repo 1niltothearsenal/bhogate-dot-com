@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.cassandra.config.CassandraClusterFactoryBean;
+import org.springframework.data.cassandra.config.CassandraEntityClassScanner;
 import org.springframework.data.cassandra.config.CassandraSessionFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.core.CassandraOperations;
@@ -13,9 +14,13 @@ import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.convert.CassandraConverter;
 import org.springframework.data.cassandra.core.convert.MappingCassandraConverter;
 import org.springframework.data.cassandra.core.mapping.CassandraMappingContext;
+import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
+
+import java.util.Set;
 
 @Configuration
 @PropertySource(value = {"classpath:cassandra.properties"})
+@EnableCassandraRepositories(basePackages = {"com.gooner.dhaka.bhogatedotcom"})
 public class CassandraConnector {
 
     private static final String KEYSPACE = "cassandra.keyspace";
@@ -55,12 +60,15 @@ public class CassandraConnector {
     }
 
     @Bean
-    public CassandraMappingContext mappingContext() {
-        return new CassandraMappingContext();
+    public CassandraMappingContext mappingContext() throws ClassNotFoundException {
+
+        CassandraMappingContext cassandraMappingContext = new CassandraMappingContext();
+        cassandraMappingContext.setInitialEntitySet(getInitialEntitySet());
+        return cassandraMappingContext;
     }
 
     @Bean
-    public CassandraConverter converter() {
+    public CassandraConverter converter() throws ClassNotFoundException {
         return new MappingCassandraConverter(mappingContext());
     }
 
@@ -70,7 +78,7 @@ public class CassandraConnector {
         cassandraSessionFactoryBean.setCluster(cluster().getObject());
         cassandraSessionFactoryBean.setKeyspaceName(getKeyspaceName());
         cassandraSessionFactoryBean.setConverter(converter());
-        cassandraSessionFactoryBean.setSchemaAction(SchemaAction.NONE);
+        cassandraSessionFactoryBean.setSchemaAction(SchemaAction.CREATE_IF_NOT_EXISTS);
         return cassandraSessionFactoryBean;
     }
 
@@ -78,5 +86,14 @@ public class CassandraConnector {
     public CassandraOperations cassandraTemplate() throws Exception {
         return new CassandraTemplate(session().getObject());
     }
+
+    public String[] getEntityBasePackages() {
+        return new String[]{"com.gooner.dhaka.bhogatedotcom"};
+    }
+
+    protected Set<Class<?>> getInitialEntitySet() throws ClassNotFoundException {
+        return CassandraEntityClassScanner.scan(getEntityBasePackages());
+    }
+
 
 }

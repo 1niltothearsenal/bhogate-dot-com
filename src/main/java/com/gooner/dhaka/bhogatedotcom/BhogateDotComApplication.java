@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BhogateDotComApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BhogateDotComApplication.class, args);
+       SpringApplication.run(BhogateDotComApplication.class, args);
 
     }
-
 }

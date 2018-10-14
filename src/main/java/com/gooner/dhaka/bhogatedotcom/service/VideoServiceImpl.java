@@ -8,8 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,8 +31,13 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void createVideo(Video video) {
+    public ResponseEntity<Object> createVideo(Video video) {
         videoDao.createVideo(video);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
+                buildAndExpand(video.getUserId()).toUri();
+        return ResponseEntity.created(location).build();
+
     }
 
     @Override

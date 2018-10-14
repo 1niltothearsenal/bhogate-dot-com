@@ -1,6 +1,5 @@
 package com.gooner.dhaka.bhogatedotcom.repo;
 
-import com.gooner.dhaka.bhogatedotcom.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.stereotype.Repository;
@@ -14,7 +13,9 @@ public class MyCassandraTemplate {
         @Autowired
         private CassandraOperations cassandraTemplate;
 
-        /** MyCassandraTemplate Default constructor*/
+        /**
+         * MyCassandraTemplate Default constructor
+         */
         public MyCassandraTemplate() {
             System.out.println("MyCassandraTemplate()");
         }

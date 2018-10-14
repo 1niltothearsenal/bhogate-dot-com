@@ -2,6 +2,7 @@ package com.gooner.dhaka.bhogatedotcom.controller;
 
 import com.gooner.dhaka.bhogatedotcom.model.Video;
 import com.gooner.dhaka.bhogatedotcom.service.VideoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("cassandra")
 public class VideoController {
@@ -31,14 +33,7 @@ public class VideoController {
 
     @PostMapping("videos")
     public ResponseEntity<Object> postVideos(@RequestBody Video video){
-
-        videoService.createVideo(video);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
-                buildAndExpand(video.getUserId())
-                .toUri();
-
-        return ResponseEntity.created(location).build();
+        return videoService.createVideo(video);
     }
 
     @PutMapping("videos")

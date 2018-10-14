@@ -2,6 +2,7 @@ package com.gooner.dhaka.bhogatedotcom.service;
 
 import com.gooner.dhaka.bhogatedotcom.model.Video;
 import org.springframework.hateoas.Resource;
+import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 public interface VideoService {
 
-    void createVideo(Video video);
+    ResponseEntity<Object> createVideo(Video video);
 
     void updateVideo(Video video);
 
