@@ -18,7 +18,6 @@ import org.springframework.data.cassandra.core.mapping.CassandraMappingContext;
 @PropertySource(value = {"classpath:cassandra.properties"})
 public class CassandraConnector {
 
-
     private static final String KEYSPACE = "cassandra.keyspace";
 
     private static final String CONTACT_POINTS = "cassandra.contactpoints";
@@ -79,6 +78,5 @@ public class CassandraConnector {
     public CassandraOperations cassandraTemplate() throws Exception {
         return new CassandraTemplate(session().getObject());
     }
-
 
 }

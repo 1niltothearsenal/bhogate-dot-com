@@ -1,5 +1,6 @@
 package com.gooner.dhaka.bhogatedotcom.repo;
 
+import com.gooner.dhaka.bhogatedotcom.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.stereotype.Repository;
@@ -18,15 +19,13 @@ public class MyCassandraTemplate {
             System.out.println("MyCassandraTemplate()");
         }
 
-
         public <T> void create(T entity) {
             cassandraTemplate.insert(entity);
         }
 
-        public <T> void createList(List<T> entities) {
-            cassandraTemplate.insert(entities);
+        public <T> void updateVideo(T video, Class<T> claz){
+            cassandraTemplate.update(video);
         }
-
 
         public <T> List<T> findAll(Class<T> claz) {
             return (List<T>) cassandraTemplate.select("SELECT * FROM videos;",claz);
@@ -36,5 +35,8 @@ public class MyCassandraTemplate {
         return cassandraTemplate.selectOneById(id,claz);
         }
 
+        public <T> void deleteVideo(Video video){
+            cassandraTemplate.delete(video);
+        }
 
 }

@@ -1,8 +1,8 @@
 package com.gooner.dhaka.bhogatedotcom.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.*;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.Date;
 import java.util.UUID;
@@ -14,7 +14,6 @@ public class Video {
     private UUID videoId;
 
     @Column("added_date")
-    @JsonFormat(pattern="yyyy-MM-dd")
     private Date addedDate;
 
     @Column("description")

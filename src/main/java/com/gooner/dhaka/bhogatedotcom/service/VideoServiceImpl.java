@@ -23,6 +23,11 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
+    public void updateVideo(Video video) {
+        videoDao.updateVideo(video);
+    }
+
+    @Override
     public Video getVideo(UUID id) {
         return videoDao.getVideo(id);
     }
@@ -30,5 +35,10 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public List<Video> getAllVideos() {
         return videoDao.getAllVideos();
+    }
+
+    @Override
+    public void deleteVideo(Video video) {
+        videoDao.deleteVideos(video);
     }
 }

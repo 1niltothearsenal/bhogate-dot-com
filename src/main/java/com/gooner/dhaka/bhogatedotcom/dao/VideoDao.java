@@ -9,10 +9,14 @@ import java.util.UUID;
 @Repository
 public interface VideoDao {
 
-    public void createVideo(Video video);
+    void createVideo(Video video);
 
-    public Video getVideo(UUID videoId);
+    Video getVideo(UUID videoId);
 
-    public List<Video> getAllVideos();
+    void updateVideo(Video video);
+
+    List<Video> getAllVideos();
+
+    void deleteVideos(Video video);
 
 }

@@ -7,10 +7,14 @@ import java.util.UUID;
 
 public interface VideoService {
 
-    public void createVideo(Video video);
+    void createVideo(Video video);
 
-    public Video getVideo(UUID id);
+    void updateVideo(Video video);
 
-    public List<Video> getAllVideos();
+    Video getVideo(UUID id);
+
+    List<Video> getAllVideos();
+
+    void deleteVideo(Video video);
 
 }
