@@ -3,6 +3,7 @@ package com.gooner.dhaka.bhogatedotcom.dao;
 import com.gooner.dhaka.bhogatedotcom.model.Video;
 import com.gooner.dhaka.bhogatedotcom.repo.MyCassandraTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
