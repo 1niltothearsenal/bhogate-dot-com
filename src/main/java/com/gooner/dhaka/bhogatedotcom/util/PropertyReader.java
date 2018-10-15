@@ -16,11 +16,15 @@ public class PropertyReader {
     @Value("${enterprise.phone}")
     private String phone;
 
-    @PostConstruct
+    /*@PostConstruct
     public void init(){
 
       log.info("Email is: " +email+" phone is: "+phone);
 
+    }*/
+
+    public void logMethod(){
+        log.info("Email is: " +email+" phone is: "+phone);
     }
 
 }
