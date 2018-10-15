@@ -26,10 +26,15 @@ public class JustMessingAround {
         return environment.getProperty("enterprise.degree");
     }
 
-    @PostConstruct
+   /* @PostConstruct
     public void init(){
 
       log.info("The name is: "+getEmail()+", The degree is: "+getDegree());
+    }*/
+
+
+    public void logTheProperties(){
+        log.info("The name is: "+getEmail()+", The degree is: "+getDegree());
     }
 
 }

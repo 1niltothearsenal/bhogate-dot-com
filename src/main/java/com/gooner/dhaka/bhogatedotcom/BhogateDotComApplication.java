@@ -1,9 +1,13 @@
 package com.gooner.dhaka.bhogatedotcom;
 
+
 import com.gooner.dhaka.bhogatedotcom.util.PropertyReader;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import com.gooner.dhaka.bhogatedotcom.util.JustMessingAround;
+
 
 @SpringBootApplication
 public class BhogateDotComApplication {
@@ -16,5 +20,12 @@ public class BhogateDotComApplication {
 
         bean.logMethod();
 
+        JustMessingAround bean1 = run.getBean(JustMessingAround.class);
+
+
+        bean1.logTheProperties();
     }
+    
+   
+        
 }
