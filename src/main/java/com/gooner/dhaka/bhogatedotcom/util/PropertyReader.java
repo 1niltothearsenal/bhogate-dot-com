@@ -19,8 +19,9 @@ public class PropertyReader {
     @PostConstruct
     public void init(){
 
-      log.info("Email is: " +email+" phone is: "+phone);
+      log.info("Email is not: " +email+" phone is: "+phone);
 
     }
+
 
 }
