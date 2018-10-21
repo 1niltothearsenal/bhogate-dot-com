@@ -8,17 +8,19 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import com.gooner.dhaka.bhogatedotcom.util.JustMessingAround;
 
+import java.io.IOException;
+
 
 @SpringBootApplication
 public class BhogateDotComApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext run =
                 SpringApplication.run(BhogateDotComApplication.class, args);
 
         PropertyReader bean = run.getBean(PropertyReader.class);
 
-        bean.logMethod();
+        //bean.logMethod();
 
         JustMessingAround bean1 = run.getBean(JustMessingAround.class);
 

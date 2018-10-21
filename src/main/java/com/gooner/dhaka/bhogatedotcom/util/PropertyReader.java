@@ -21,8 +21,8 @@ public class PropertyReader {
 
     }*/
 
-    public void logMethod(){
+    /*public void logMethod(){
         log.info("Email is: " +email+" phone is: "+phone);
-    }
+    }*/
 
 }

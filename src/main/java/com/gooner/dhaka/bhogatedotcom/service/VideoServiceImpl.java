@@ -35,7 +35,7 @@ public class VideoServiceImpl implements VideoService {
         videoDao.createVideo(video);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
-                buildAndExpand(video.getUserId()).toUri();
+                buildAndExpand(video.getVideoId()).toUri();
         return ResponseEntity.created(location).build();
 
     }

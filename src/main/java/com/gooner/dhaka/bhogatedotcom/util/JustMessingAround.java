@@ -7,7 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
-import javax.annotation.PostConstruct;
+import java.io.IOException;
 
 @Slf4j
 @Configuration
@@ -16,9 +16,12 @@ import javax.annotation.PostConstruct;
 public class JustMessingAround {
 
     @Autowired
-    Environment environment;
+    private Environment environment;
 
-    public String getEmail(){
+    @Autowired
+    ReadingFromAFile readingFromAFile;
+
+    public String getName(){
         return environment.getProperty("enterprise.name");
     }
 
@@ -33,8 +36,12 @@ public class JustMessingAround {
     }*/
 
 
-    public void logTheProperties(){
-        log.info("The name is: "+getEmail()+", The degree is: "+getDegree());
+    public void logTheProperties() throws IOException {
+        log.info("The name is: "+getName()+", The degree is: "+getDegree());
+
+        String json = readingFromAFile.getJson();
+
+        log.info(json);
     }
 
 }
