@@ -36,7 +36,17 @@ public class VideoDaoImpl implements VideoDao {
     }
 
     @Override
-    public void deleteVideos(Video video) {
+    public boolean deleteVideoById(UUID videoId) {
+        return myCassandraTemplate.deleteVideoById(videoId,Video.class);
+    }
+
+    @Override
+    public void deleteVideo(Video video) {
         myCassandraTemplate.deleteVideo(video);
+    }
+
+    @Override
+    public boolean checkIfExists(UUID videoId) {
+        return myCassandraTemplate.checkIfExistsById(videoId,Video.class);
     }
 }
