@@ -11,9 +11,11 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import com.datastax.driver.core.utils.UUIDs;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -32,6 +34,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public ResponseEntity<Object> createVideo(Video video) {
+        video.setVideoId(UUIDs.timeBased());
         videoDao.createVideo(video);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
@@ -41,8 +44,15 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void updateVideo(Video video) {
-        videoDao.updateVideo(video);
+    public ResponseEntity<Object> updateVideo(Video video) {
+        if(!exists(video.getVideoId())) {
+            throw new VideoNotFoundException("The VideoId does not exist. Please try with existing id.");
+        }else {
+            videoDao.updateVideo(video);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
+                    buildAndExpand(video.getVideoId()).toUri();
+            return ResponseEntity.created(location).build();
+        }
     }
 
     @Override

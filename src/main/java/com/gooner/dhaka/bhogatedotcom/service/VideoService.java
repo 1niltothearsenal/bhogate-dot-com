@@ -12,7 +12,7 @@ public interface VideoService {
 
     ResponseEntity<Object> createVideo(Video video);
 
-    void updateVideo(Video video);
+    ResponseEntity<Object> updateVideo(Video video);
 
     Resource<Video> getVideoById(UUID id);
 
