@@ -39,12 +39,7 @@ public class JustMessingAround {
     public void logTheProperties() {
         log.info("The name is: "+getName()+", The degree is: "+getDegree());
 
-        String json = null;
-        try {
-            json = readingFromAFile.getJson();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String json = readingFromAFile.getJson();
 
         log.info(json);
     }

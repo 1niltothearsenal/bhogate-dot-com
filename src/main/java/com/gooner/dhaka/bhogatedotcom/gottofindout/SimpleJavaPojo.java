@@ -1,5 +1,7 @@
 package com.gooner.dhaka.bhogatedotcom.gottofindout;
 
+import lombok.extern.slf4j.Slf4j;
+
 public class SimpleJavaPojo {
 
 	private int id;

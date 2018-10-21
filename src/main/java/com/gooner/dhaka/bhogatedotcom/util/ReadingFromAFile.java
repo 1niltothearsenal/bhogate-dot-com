@@ -23,21 +23,27 @@ public class ReadingFromAFile {
     ResourceLoader resourceLoader;
 
 
-    public String getJson() throws IOException {
+    public String getJson() {
 
-        String jsonFileName = environment.getProperty("cassandra.filename");
+        try {
 
-        Resource resource = resourceLoader.getResource("classpath:configure/"+jsonFileName);
+            String jsonFileName = environment.getProperty("cassandra.filename");
 
-        InputStream inputStream = resource.getInputStream();
+            Resource resource = resourceLoader.getResource("classpath:configure/" + jsonFileName);
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+            InputStream inputStream = resource.getInputStream();
 
-        String collect = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 
-        inputStream.close();
+            String collect = reader.lines().collect(Collectors.joining(System.lineSeparator()));
 
-        return collect;
+            inputStream.close();
+
+            return collect;
+        }catch (IOException ex){
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 
