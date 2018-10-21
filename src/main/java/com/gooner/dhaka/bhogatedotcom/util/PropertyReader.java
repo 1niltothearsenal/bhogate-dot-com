@@ -17,13 +17,15 @@ public class PropertyReader {
     /*@PostConstruct
     public void init(){
 
-      log.info("Email is not: " +email+" phone is: "+phone);
+        for(int i=0;i<4;i++) {
+            log.info("Your Email is : " + email + " phone is: " + phone);
+
 
     }*/
 
-    /*public void logMethod(){
+    public void logMethod(){
         log.info("Email is: " +email+" phone is: "+phone);
-    }*/
+    }
 
 
 }

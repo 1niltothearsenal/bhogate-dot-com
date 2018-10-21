@@ -17,7 +17,10 @@ public class JustMessingAroundWithAspect {
     //Run this code BEFORE - target object method: "public void logTheProperties()"
     @Before("execution(public void logTheProperties())")
     public void beforeLogTheProperties(){
-        log.info("This method has @Before signature, so you know where it shall run.. :)");
+
+        System.out.println("Alright now, you need to comment this out later!");
+        log.info("This method has @Before signature, So you know where it shall run.. :)");
+
     }
 
 
