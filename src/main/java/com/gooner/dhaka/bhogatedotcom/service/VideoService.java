@@ -18,6 +18,10 @@ public interface VideoService {
 
     List<Video> getAllVideos();
 
-    void deleteVideo(Video video);
+    ResponseEntity<Object> deleteVideoById(UUID id);
+
+    ResponseEntity<Object> deleteVideo(Video video);
+
+    boolean exists(UUID id);
 
 }
