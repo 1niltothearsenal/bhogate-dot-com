@@ -16,6 +16,7 @@ import org.springframework.data.cassandra.core.convert.MappingCassandraConverter
 import org.springframework.data.cassandra.core.mapping.CassandraMappingContext;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Configuration
@@ -73,9 +74,9 @@ public class CassandraConnector {
     }
 
     @Bean
-    public CassandraSessionFactoryBean session() throws Exception {
+    public CassandraSessionFactoryBean session() throws ClassNotFoundException {
         CassandraSessionFactoryBean cassandraSessionFactoryBean = new CassandraSessionFactoryBean();
-        cassandraSessionFactoryBean.setCluster(cluster().getObject());
+        cassandraSessionFactoryBean.setCluster(Objects.requireNonNull(cluster().getObject()));
         cassandraSessionFactoryBean.setKeyspaceName(getKeyspaceName());
         cassandraSessionFactoryBean.setConverter(converter());
         cassandraSessionFactoryBean.setSchemaAction(SchemaAction.CREATE_IF_NOT_EXISTS);

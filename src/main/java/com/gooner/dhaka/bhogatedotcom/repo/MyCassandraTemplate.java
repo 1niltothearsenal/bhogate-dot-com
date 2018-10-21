@@ -33,11 +33,19 @@ public class MyCassandraTemplate {
         }
 
         public <T> T findById(Object id, Class<T> claz) {
-        return cassandraTemplate.selectOneById(id,claz);
+            return cassandraTemplate.selectOneById(id,claz);
         }
 
-        public <T> void deleteVideo(T claz){
-            cassandraTemplate.delete(claz);
+        public <T> boolean checkIfExistsById(Object id, Class<T> claz){
+            return cassandraTemplate.exists(id,claz);
+        }
+
+        public <T> boolean deleteVideoById(Object id, Class<T> claz){
+            return cassandraTemplate.deleteById(id, claz);
+        }
+
+        public <T> void deleteVideo(T video){
+            cassandraTemplate.delete(video);
         }
 
 }

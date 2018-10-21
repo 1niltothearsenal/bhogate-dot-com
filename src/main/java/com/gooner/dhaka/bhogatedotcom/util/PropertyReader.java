@@ -27,5 +27,4 @@ public class PropertyReader {
         log.info("Email is: " +email+" phone is: "+phone);
     }
 
-
 }

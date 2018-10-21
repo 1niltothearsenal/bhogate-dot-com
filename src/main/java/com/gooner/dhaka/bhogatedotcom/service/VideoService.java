@@ -12,12 +12,16 @@ public interface VideoService {
 
     ResponseEntity<Object> createVideo(Video video);
 
-    void updateVideo(Video video);
+    ResponseEntity<Object> updateVideo(Video video);
 
     Resource<Video> getVideoById(UUID id);
 
     List<Video> getAllVideos();
 
-    void deleteVideo(Video video);
+    ResponseEntity<Object> deleteVideoById(UUID id);
+
+    ResponseEntity<Object> deleteVideo(Video video);
+
+    boolean exists(UUID id);
 
 }

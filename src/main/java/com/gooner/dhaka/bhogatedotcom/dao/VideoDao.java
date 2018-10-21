@@ -17,6 +17,10 @@ public interface VideoDao {
 
     List<Video> getAllVideos();
 
-    void deleteVideos(Video video);
+    boolean deleteVideoById(UUID videoId);
+
+    void deleteVideo(Video video);
+
+    boolean checkIfExists(UUID videoId);
 
 }
