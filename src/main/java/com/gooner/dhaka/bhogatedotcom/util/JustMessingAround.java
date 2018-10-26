@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 import java.io.IOException;
+import java.util.Date;
 
 @Slf4j
 @Configuration
@@ -47,6 +48,8 @@ public class JustMessingAround {
         }
 
         log.info(json);
+        Date date = new Date();
+        log.info(date.toString());
     }
 
 }

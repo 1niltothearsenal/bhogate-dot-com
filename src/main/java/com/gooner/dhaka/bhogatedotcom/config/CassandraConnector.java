@@ -84,7 +84,7 @@ public class CassandraConnector {
     }
 
     @Bean
-    public CassandraOperations cassandraTemplate() throws Exception {
+    public CassandraOperations cassandraTemplate() throws ClassNotFoundException {
         return new CassandraTemplate(session().getObject());
     }
 
