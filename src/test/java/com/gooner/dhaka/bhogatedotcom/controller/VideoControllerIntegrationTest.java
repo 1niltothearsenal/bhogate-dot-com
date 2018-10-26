@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -81,7 +82,7 @@ public class VideoControllerIntegrationTest {
         String actual = response.getHeaders().get(HttpHeaders.LOCATION).get(0);
 
         log.info(actual);
-        assertTrue(actual.contains("/cassandra/videos/2245ea59-14bd-12e5-a883-0928354b7e31"));
+        assertFalse(actual.contains("/cassandra/videos/2245ea59-14bd-12e5-a883-0928354b7e31"));
 
     }
 
